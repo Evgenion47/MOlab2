@@ -22,8 +22,7 @@ def processing(v, eps, x1, x2):  # v - выбор метода : 1 метод н
         if v == 1:
             agradx = getAgrad(x1, x2)
         else:
-            tmpAgrad = getAgrad(x1,x2)
-            b = pow(pow(tmpAgrad[0],2) + pow(tmpAgrad[1],2), 2) / pow(pow(agradx[0],2) + pow(agradx[1],2), 2)
+            b = pow(pow(getAgrad(x1,x2)[0],2) + pow(getAgrad(x1,x2)[1],2), 2) / pow(pow(agradx[0],2) + pow(agradx[1],2), 2)
             agradx[0], agradx[1] = getAgrad(x1, x2)[0] + b * agradx[0], getAgrad(x1, x2)[1] + b * agradx[1]
         table.append([k, f'({x1};{x2})', f'({agradx[0]};{agradx[1]})'])
     print(tabulate(table, headers='keys') + '\n')
